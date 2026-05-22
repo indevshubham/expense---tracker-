@@ -1,0 +1,19 @@
+{
+  "name": "personal-expense-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Production-grade personal expense tracker with real authentication, database persistence, analytics, exports, budgets, and spending insights.",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/api & npm run dev --workspace apps/web",
+    "build": "npm run build --workspace apps/api && npm run build --workspace apps/web",
+    "typecheck": "npm run typecheck --workspace apps/api && npm run typecheck --workspace apps/web",
+    "lint": "npm run lint --workspace apps/api && npm run lint --workspace apps/web"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
