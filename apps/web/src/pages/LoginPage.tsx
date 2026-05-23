@@ -13,13 +13,28 @@ export function LoginPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const form = new FormData(event.currentTarget);
+
+    console.log("LOGIN CLICKED");
+    console.log("EMAIL:", form.get("email"));
+    console.log("PASSWORD:", form.get("password"));
+
     setLoading(true);
+
     try {
-      await login(String(form.get("email")), String(form.get("password")));
+      await login(
+        String(form.get("email")),
+        String(form.get("password"))
+      );
+
+      console.log("LOGIN SUCCESS");
+
       toast.success("Welcome back to your workspace");
       navigate("/");
     } catch (error) {
+      console.log("LOGIN ERROR", error);
+
       toast.error(errorMessage(error));
     } finally {
       setLoading(false);
@@ -27,29 +42,29 @@ export function LoginPage() {
   }
 
   return (
-    <AuthShell 
-      title="Access Workspace" 
+    <AuthShell
+      title="Access Workspace"
       subtitle="Access your personal ledgers, automated budget targets, and AI analytics in a secured sandbox environment."
     >
       <form className="grid gap-5" onSubmit={handleSubmit}>
         <Field label="Security Email">
-          <Input 
-            name="email" 
-            type="email" 
-            autoComplete="email" 
+          <Input
+            name="email"
+            type="email"
+            autoComplete="email"
             placeholder="name@company.com"
-            required 
+            required
           />
         </Field>
-        
+
         <Field label="Account Password">
-          <Input 
-            name="password" 
-            type="password" 
-            autoComplete="current-password" 
-            minLength={8} 
+          <Input
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            minLength={8}
             placeholder="••••••••"
-            required 
+            required
           />
         </Field>
 
