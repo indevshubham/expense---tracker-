@@ -1,8 +1,8 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 
 export const api = axios.create({
- baseURL: import.meta.env.VITE_API_BASE_URL
-  withCredentials: true
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  withCredentials: true,
 });
 
 let getAccessToken = () => null as string | null;
